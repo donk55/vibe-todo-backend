@@ -21,13 +21,14 @@ app.get('/', (req, res) => {
 
 app.use('/api/todos', todoRouter);
 
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log('MongoDB 연결 성공');
-    app.listen(PORT, () => {
-      console.log(`Server is running on http://localhost:${PORT}`);
-    });
   })
   .catch((err) => {
     console.error('MongoDB 연결 실패:', err.message);
